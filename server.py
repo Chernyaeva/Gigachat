@@ -4,7 +4,11 @@ import time
 from datetime import datetime
 import sys, getopt  # to work with command line arguments
 import json
+import logging
+import Logs.config_server_log
 
+#initialyze logger
+logger = logging.getLogger('server')
 
 def make_response(rcv_dict):
     snd_msg = {}
@@ -30,15 +34,23 @@ def main(argv):
          address = arg
       elif opt in ("-p", "--port"):
          port = arg
+    logger.info('Server started with parameters -p %s -a %s', port, address)
     # Make and bind socket
     s = socket(AF_INET, SOCK_STREAM) # Make TCP socket
-    s.bind((address, port)) # Bind socket to port 
+    try:
+        s.bind((address, port)) # Bind socket to port
+    except:
+        logger.error('Could not bind socket')
+        return    
     s.listen(5) # Activate listening mode for socket. Accept not more than 5 clients simulteneously.
     client, addr = s.accept()
     while True:       
         data = client.recv(1000000)
-        rcv_dict = json.loads(data.decode('UTF-8'))
-        print('Сообщение: ', data.decode('utf-8'), ', было отправлено клиентом: ', addr)
+        try:
+            rcv_dict = json.loads(data.decode('UTF-8'))
+        except:
+           logger.error('Could not parse message from client as JSON')    
+        logger.debug('Сообщение: %s , было отправлено клиентом: %s', data.decode('utf-8'), addr)
         client.send(make_response(rcv_dict))
         # client.close()
 
