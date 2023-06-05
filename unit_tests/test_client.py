@@ -7,7 +7,7 @@ import sys
 import os
 
 sys.path.append(os.path.join(os.getcwd(), '..'))
-from Server.server import make_response
+from server import make_response
 
 class TestServer(unittest.TestCase):
 
