@@ -5,9 +5,11 @@ import sys, getopt  # to work with command line arguments
 import json
 import logging
 import Logs.config_client_log
+from decorators import log
 
 #initialyze logger
 logger = logging.getLogger('client')
+
 
 presense_message = {
     "action": "presence",
@@ -19,7 +21,7 @@ presense_message = {
     }
 }
 
-
+@log(logger)
 def send_presence(mysocket):
     presense_message['time'] = time.mktime(datetime.now().timetuple())
     msg = json.dumps(presense_message)

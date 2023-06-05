@@ -71,3 +71,23 @@
 2023-06-04 17:34:00,000 DEBUG client.py Server responded to presence message with code: 202
 2023-06-04 17:34:14,403 INFO client.py Client started with parameters -p 7777 -a localhost
 2023-06-04 17:34:14,404 ERROR client.py Could not connect to server localhost:7777
+2023-06-05 23:04:43,243 INFO client.py Client started with parameters -p 7777 -a localhost
+2023-06-05 23:07:34,187 INFO client.py Client started with parameters -p 7777 -a localhost
+2023-06-05 23:07:35,002 DEBUG client.py Server responded to presence message with code: 202
+2023-06-05 23:07:35,004 DEBUG decorators.py Function send_presence called with parameters (<socket.socket fd=4, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 49840), raddr=('127.0.0.1', 7777)>,), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
+2023-06-05 23:07:40,000 DEBUG client.py Server responded to presence message with code: 202
+2023-06-05 23:07:40,001 DEBUG decorators.py Function send_presence called with parameters (<socket.socket fd=4, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 49840), raddr=('127.0.0.1', 7777)>,), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
+2023-06-05 23:07:45,000 DEBUG client.py Server responded to presence message with code: 202
+2023-06-05 23:07:45,001 DEBUG decorators.py Function send_presence called with parameters (<socket.socket fd=4, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 49840), raddr=('127.0.0.1', 7777)>,), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
+2023-06-05 23:07:50,003 DEBUG client.py Server responded to presence message with code: 202
+2023-06-05 23:07:50,003 DEBUG decorators.py Function send_presence called with parameters (<socket.socket fd=4, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 49840), raddr=('127.0.0.1', 7777)>,), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
+2023-06-05 23:07:55,000 DEBUG client.py Server responded to presence message with code: 202
+2023-06-05 23:07:55,001 DEBUG decorators.py Function send_presence called with parameters (<socket.socket fd=4, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 49840), raddr=('127.0.0.1', 7777)>,), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
+2023-06-05 23:08:00,001 DEBUG client.py Server responded to presence message with code: 202
+2023-06-05 23:08:00,001 DEBUG decorators.py Function send_presence called with parameters (<socket.socket fd=4, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 49840), raddr=('127.0.0.1', 7777)>,), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
+2023-06-05 23:08:05,000 DEBUG client.py Server responded to presence message with code: 202
+2023-06-05 23:08:05,001 DEBUG decorators.py Function send_presence called with parameters (<socket.socket fd=4, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 49840), raddr=('127.0.0.1', 7777)>,), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
+2023-06-05 23:08:10,001 DEBUG client.py Server responded to presence message with code: 202
+2023-06-05 23:08:10,001 DEBUG decorators.py Function send_presence called with parameters (<socket.socket fd=4, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 49840), raddr=('127.0.0.1', 7777)>,), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
+2023-06-05 23:08:15,000 DEBUG client.py Server responded to presence message with code: 202
+2023-06-05 23:08:15,001 DEBUG decorators.py Function send_presence called with parameters (<socket.socket fd=4, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 49840), raddr=('127.0.0.1', 7777)>,), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main

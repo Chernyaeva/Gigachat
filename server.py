@@ -6,10 +6,12 @@ import sys, getopt  # to work with command line arguments
 import json
 import logging
 import Logs.config_server_log
+from decorators import log
 
 #initialyze logger
 logger = logging.getLogger('server')
 
+@log(logger)
 def make_response(rcv_dict):
     snd_msg = {}
     if rcv_dict['action'] == 'presence':
@@ -19,7 +21,6 @@ def make_response(rcv_dict):
         snd_msg["alert"] = "server could not find good response"  
     snd_msg['time'] = time.mktime(datetime.now().timetuple())
     return json.dumps(snd_msg).encode('utf-8')    
-
 
 def main(argv):
     # Parse command line arguments for port and address
