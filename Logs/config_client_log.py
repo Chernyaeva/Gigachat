@@ -10,5 +10,5 @@ file_handler.setFormatter(cl_formatter)
 # Create and setup logger
 logger = logging.getLogger('client')
 logger.addHandler(file_handler)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 

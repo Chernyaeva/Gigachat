@@ -11,5 +11,5 @@ file_handler.setFormatter(srv_formatter)
 # Create and setup logger
 logger = logging.getLogger('server')
 logger.addHandler(file_handler)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 

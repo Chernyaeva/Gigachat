@@ -1,28 +1,5 @@
-2023-06-05 22:59:41,132 INFO server.py Server started with parameters -p 7777 -a 
-2023-06-05 23:03:08,153 INFO server.py Server started with parameters -p 7777 -a 
-2023-06-05 23:04:19,414 INFO server.py Server started with parameters -p 7777 -a 
-2023-06-05 23:07:25,302 INFO server.py Server started with parameters -p 7777 -a 
-2023-06-05 23:07:35,000 DEBUG server.py Сообщение: {"action": "presence", "time": 1685999255.0, "type": "status", "user": {"account_name": "GigaChad", "status": "I'm still alive!"}} , было отправлено клиентом: ('127.0.0.1', 49840)
-2023-06-05 23:07:35,002 DEBUG decorators.py Function make_response called with parameters ({'action': 'presence', 'time': 1685999255.0, 'type': 'status', 'user': {'account_name': 'GigaChad', 'status': "I'm still alive!"}},), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
-2023-06-05 23:07:40,000 DEBUG server.py Сообщение: {"action": "presence", "time": 1685999260.0, "type": "status", "user": {"account_name": "GigaChad", "status": "I'm still alive!"}} , было отправлено клиентом: ('127.0.0.1', 49840)
-2023-06-05 23:07:40,000 DEBUG decorators.py Function make_response called with parameters ({'action': 'presence', 'time': 1685999260.0, 'type': 'status', 'user': {'account_name': 'GigaChad', 'status': "I'm still alive!"}},), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
-2023-06-05 23:07:45,000 DEBUG server.py Сообщение: {"action": "presence", "time": 1685999265.0, "type": "status", "user": {"account_name": "GigaChad", "status": "I'm still alive!"}} , было отправлено клиентом: ('127.0.0.1', 49840)
-2023-06-05 23:07:45,000 DEBUG decorators.py Function make_response called with parameters ({'action': 'presence', 'time': 1685999265.0, 'type': 'status', 'user': {'account_name': 'GigaChad', 'status': "I'm still alive!"}},), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
-2023-06-05 23:07:50,001 DEBUG server.py Сообщение: {"action": "presence", "time": 1685999270.0, "type": "status", "user": {"account_name": "GigaChad", "status": "I'm still alive!"}} , было отправлено клиентом: ('127.0.0.1', 49840)
-2023-06-05 23:07:50,003 DEBUG decorators.py Function make_response called with parameters ({'action': 'presence', 'time': 1685999270.0, 'type': 'status', 'user': {'account_name': 'GigaChad', 'status': "I'm still alive!"}},), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
-2023-06-05 23:07:55,000 DEBUG server.py Сообщение: {"action": "presence", "time": 1685999275.0, "type": "status", "user": {"account_name": "GigaChad", "status": "I'm still alive!"}} , было отправлено клиентом: ('127.0.0.1', 49840)
-2023-06-05 23:07:55,000 DEBUG decorators.py Function make_response called with parameters ({'action': 'presence', 'time': 1685999275.0, 'type': 'status', 'user': {'account_name': 'GigaChad', 'status': "I'm still alive!"}},), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
-2023-06-05 23:08:00,000 DEBUG server.py Сообщение: {"action": "presence", "time": 1685999280.0, "type": "status", "user": {"account_name": "GigaChad", "status": "I'm still alive!"}} , было отправлено клиентом: ('127.0.0.1', 49840)
-2023-06-05 23:08:00,001 DEBUG decorators.py Function make_response called with parameters ({'action': 'presence', 'time': 1685999280.0, 'type': 'status', 'user': {'account_name': 'GigaChad', 'status': "I'm still alive!"}},), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
-2023-06-05 23:08:05,000 DEBUG server.py Сообщение: {"action": "presence", "time": 1685999285.0, "type": "status", "user": {"account_name": "GigaChad", "status": "I'm still alive!"}} , было отправлено клиентом: ('127.0.0.1', 49840)
-2023-06-05 23:08:05,000 DEBUG decorators.py Function make_response called with parameters ({'action': 'presence', 'time': 1685999285.0, 'type': 'status', 'user': {'account_name': 'GigaChad', 'status': "I'm still alive!"}},), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
-2023-06-05 23:08:10,000 DEBUG server.py Сообщение: {"action": "presence", "time": 1685999290.0, "type": "status", "user": {"account_name": "GigaChad", "status": "I'm still alive!"}} , было отправлено клиентом: ('127.0.0.1', 49840)
-2023-06-05 23:08:10,000 DEBUG decorators.py Function make_response called with parameters ({'action': 'presence', 'time': 1685999290.0, 'type': 'status', 'user': {'account_name': 'GigaChad', 'status': "I'm still alive!"}},), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
-2023-06-05 23:08:15,000 DEBUG server.py Сообщение: {"action": "presence", "time": 1685999295.0, "type": "status", "user": {"account_name": "GigaChad", "status": "I'm still alive!"}} , было отправлено клиентом: ('127.0.0.1', 49840)
-2023-06-05 23:08:15,000 DEBUG decorators.py Function make_response called with parameters ({'action': 'presence', 'time': 1685999295.0, 'type': 'status', 'user': {'account_name': 'GigaChad', 'status': "I'm still alive!"}},), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
-2023-06-05 23:08:19,355 ERROR server.py Could not parse message from client as JSON
-2023-06-05 23:08:19,355 DEBUG server.py Сообщение:  , было отправлено клиентом: ('127.0.0.1', 49840)
-2023-06-05 23:08:19,356 DEBUG decorators.py Function make_response called with parameters ({'action': 'presence', 'time': 1685999295.0, 'type': 'status', 'user': {'account_name': 'GigaChad', 'status': "I'm still alive!"}},), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
-2023-06-05 23:08:19,356 ERROR server.py Could not parse message from client as JSON
-2023-06-05 23:08:19,356 DEBUG server.py Сообщение:  , было отправлено клиентом: ('127.0.0.1', 49840)
-2023-06-05 23:08:19,356 DEBUG decorators.py Function make_response called with parameters ({'action': 'presence', 'time': 1685999295.0, 'type': 'status', 'user': {'account_name': 'GigaChad', 'status': "I'm still alive!"}},), {}. from function main(sys.argv[1:]) of module __main__.Вызов из функции main
+2023-06-08 15:39:15,821 INFO server.py Server started with parameters -p 7777 -a 
+2023-06-08 15:39:26,034 INFO server.py Client ('127.0.0.1', 60552) tries to connect
+2023-06-08 15:39:30,468 INFO server.py Client ('127.0.0.1', 60562) tries to connect
+2023-06-08 15:39:38,803 INFO server.py Client ('127.0.0.1', 53008) tries to connect
+2023-06-08 15:40:18,498 INFO server.py Client ('127.0.0.1', 53896) tries to connect

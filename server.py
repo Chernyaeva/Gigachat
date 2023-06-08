@@ -7,9 +7,50 @@ import json
 import logging
 import Logs.config_server_log
 from decorators import log
+from select import select
 
 #initialyze logger
 logger = logging.getLogger('server')
+
+
+@log(logger)
+def read_requests(r_clients, all_clients):
+    """ Read requests from list of clients
+    """
+    requests = {} # Dict of requests from clients {socket: request}
+    for client in r_clients:
+        try:
+            data = client.recv(1024).decode('utf-8')
+            requests[client] = data
+        except:
+            logger.info('Client {} {} disconnected'.format(client.fileno(), client.getpeername()))
+            all_clients.remove(client)
+    return requests
+
+
+@log(logger)
+def write_responses(requests, w_clients, all_clients):
+    """ Just resend received messages to all clients, except ones that are sending
+    """
+    for client in w_clients:
+            for r_client in requests:
+                req_data = requests[r_client].encode('utf-8')
+                # Check type of request (message or not)
+                try:
+                    req_type = json.loads(req_data)['action']
+                except:
+                    logger.error('Could not parse message from Client {} {} disconnected'.format(client.fileno(),client.getpeername()))
+                else:                       
+                    if req_type == "msg":
+                        print(f'sending message {req_data} to client {client}') 
+                        try:
+                            # Prepare and send data to clients                   
+                            client.send(req_data)
+                        except: # Client disconnected in meantime
+                            logger.info('Client {} {} disconnected'.format(client.fileno(),client.getpeername()))
+                            client.close()
+                            all_clients.remove(client)
+
 
 @log(logger)
 def make_response(rcv_dict):
@@ -37,6 +78,7 @@ def main(argv):
          port = arg
     logger.info('Server started with parameters -p %s -a %s', port, address)
     # Make and bind socket
+    clients = []
     s = socket(AF_INET, SOCK_STREAM) # Make TCP socket
     try:
         s.bind((address, port)) # Bind socket to port
@@ -44,17 +86,28 @@ def main(argv):
         logger.error('Could not bind socket')
         return    
     s.listen(5) # Activate listening mode for socket. Accept not more than 5 clients simulteneously.
-    client, addr = s.accept()
-    while True:       
-        data = client.recv(1000000)
+    s.settimeout(0.2) 
+    
+    while True:
         try:
-            rcv_dict = json.loads(data.decode('UTF-8'))
-        except:
-           logger.error('Could not parse message from client as JSON')    
-        logger.debug('Сообщение: %s , было отправлено клиентом: %s', data.decode('utf-8'), addr)
-        client.send(make_response(rcv_dict))
-        # client.close()
-
+            client, addr = s.accept()
+        except OSError as e:
+            pass # timeout
+        else:
+            logger.info("Client %s tries to connect",str(addr))
+            clients.append(client)
+        finally:
+            # check for read/write events
+            wait = 10
+            r = []
+            w = []
+            try:
+                r, w, e = select(clients, clients, [], wait)
+            except:
+                pass
+            requests = read_requests(r, clients) # Save client request in dict
+            if requests:
+                write_responses(requests, w, clients) # Send responses to clients
 
 
 if __name__ == "__main__":
