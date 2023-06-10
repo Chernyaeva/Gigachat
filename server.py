@@ -12,6 +12,7 @@ from select import select
 #initialyze logger
 logger = logging.getLogger('server')
 
+present_users = {}
 
 @log(logger)
 def read_requests(r_clients, all_clients):
@@ -32,24 +33,29 @@ def read_requests(r_clients, all_clients):
 def write_responses(requests, w_clients, all_clients):
     """ Just resend received messages to all clients, except ones that are sending
     """
-    for client in w_clients:
-            for r_client in requests:
-                req_data = requests[r_client].encode('utf-8')
-                # Check type of request (message or not)
-                try:
-                    req_type = json.loads(req_data)['action']
-                except:
-                    logger.error('Could not parse message from Client {} {} disconnected'.format(client.fileno(),client.getpeername()))
-                else:                       
-                    if req_type == "msg":
-                        print(f'sending message {req_data} to client {client}') 
-                        try:
-                            # Prepare and send data to clients                   
-                            client.send(req_data)
-                        except: # Client disconnected in meantime
-                            logger.info('Client {} {} disconnected'.format(client.fileno(),client.getpeername()))
-                            client.close()
-                            all_clients.remove(client)
+    for r_client in requests:
+        req_data = requests[r_client].encode('utf-8')
+        # Check type of request (message or not)
+        try:
+            request = json.loads(req_data)
+            req_type = request['action']
+        except:
+            logger.error('Could not parse message from Client {} {}'.format(r_client.fileno(),r_client.getpeername()))
+        else:                       
+            if req_type == "msg":
+                if request['to'] in present_users.keys():
+                    print(f'sending message {request["message"]} to client {request["to"]}') 
+                    try:
+                        # Prepare and send data to client
+                        client = present_users[request['to']]                   
+                        client.send(req_data)
+                    except: # Client disconnected in meantime
+                        logger.info('Client {} {} disconnected'.format(client.fileno(),client.getpeername()))
+                        client.close()
+                        all_clients.remove(client)
+            elif req_type == "presence":
+                present_users[request['user']['account_name']] = r_client
+
 
 
 @log(logger)

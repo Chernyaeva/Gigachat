@@ -1,5 +1,7 @@
-2023-06-08 15:39:15,821 INFO server.py Server started with parameters -p 7777 -a 
-2023-06-08 15:39:26,034 INFO server.py Client ('127.0.0.1', 60552) tries to connect
-2023-06-08 15:39:30,468 INFO server.py Client ('127.0.0.1', 60562) tries to connect
-2023-06-08 15:39:38,803 INFO server.py Client ('127.0.0.1', 53008) tries to connect
-2023-06-08 15:40:18,498 INFO server.py Client ('127.0.0.1', 53896) tries to connect
+2023-06-10 14:39:45,937 INFO server.py Server started with parameters -p 7777 -a 
+2023-06-10 14:39:45,937 ERROR server.py Could not bind socket
+2023-06-10 14:40:04,289 INFO server.py Server started with parameters -p 7777 -a 
+2023-06-10 14:40:14,503 INFO server.py Client ('127.0.0.1', 33768) tries to connect
+2023-06-10 14:40:15,490 INFO server.py Client ('127.0.0.1', 33784) tries to connect
+2023-06-10 14:40:19,165 INFO server.py Client ('127.0.0.1', 37006) tries to connect
+
