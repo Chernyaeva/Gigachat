@@ -1,8 +1,0 @@
-2023-06-10 14:40:09,942 INFO client.py Client started with parameters -p 7777 -a localhost
-2023-06-10 14:40:15,490 INFO client.py Client started with parameters -p 7777 -a localhost
-2023-06-10 14:40:19,164 INFO client.py Client started with parameters -p 7777 -a localhost
-2023-06-10 14:40:25,392 INFO client.py New data received from server b'{"action": "msg", "encoding": "utf-8", "time": 1686400825.0, "from": "1", "to": "2", "message": "Hello"}'
-2023-06-10 14:40:32,823 INFO client.py New data received from server b'{"action": "msg", "encoding": "utf-8", "time": 1686400832.0, "from": "2", "to": "3", "message": "Hi"}'
-2023-06-10 14:40:50,298 INFO client.py New data received from server b'{"action": "msg", "encoding": "utf-8", "time": 1686400850.0, "from": "3", "to": "1", "message": "Bye!"}'
-2023-06-10 14:41:07,426 INFO client.py New data received from server b''
-2023-06-10 14:41:07,427 INFO client.py New data received from server b''
