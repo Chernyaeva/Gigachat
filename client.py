@@ -30,20 +30,23 @@ def send_presence(mysocket, user_name):
 
 
 def parse_cmd_args(argv):
-   # Parse command line arguments for port and address
+   # Parse command line arguments for port, address, username
     address = 'localhost'
     port = 7777
+    username = ''
     opts, args = getopt.getopt(argv,"ha:p:",["address=","port="])
     for opt, arg in opts:
       if opt == '-h':
-         print ('client.py -a <accepted client address. default - all> -p <listen port. default 7777>')
+         print ('client.py /n -a <accepted client address. default - all> /n -p <listen port. default 7777> /n -n Username')
          sys.exit()
       elif opt in ("-a", "--address"):
          address = arg
       elif opt in ("-p", "--port"):
          port = arg
+      elif opt in ("-n", "--name"):
+         username = arg  
     logger.info('Client started with parameters -p %s -a %s', port, address)
-    return address, port
+    return address, port, username
 
 @log(logger)
 def receive_message(mysocket):
@@ -72,7 +75,7 @@ def send_message(mysocket, username, recipient, message_text):
 
 def main(argv):
     # Parse command line arguments for port and address
-    address, port = parse_cmd_args(argv)
+    address, port, username = parse_cmd_args(argv)
     # Make and bind socket
     s = socket(AF_INET, SOCK_STREAM) # Создать сокет TCP
     try:
@@ -80,8 +83,8 @@ def main(argv):
     except:
       logger.error('Could not connect to server %s:%s', address, port)
       return   
-    
-    username = input('Your name: ')
+    if username == '':
+      username = input('Your name: ')
     send_presence(s, username)
     print(f'Hello, {username}! Type recipient name and you message. Type quit to quit the app')
     receive_thread =  Thread(target=receive_handler, args=(s, ))
