@@ -1,4 +1,4 @@
-# Программа сервера для получения приветствия от клиента и отправки ответа
+# Server programm
 import socket
 import time
 from datetime import datetime
@@ -9,6 +9,7 @@ import Logs.config_server_log
 from decorators import log
 from select import select
 from metaclasses import ServerVerifier
+from server_db import ServerStorage
 
 #initialyze logger
 logger = logging.getLogger('server')
@@ -18,7 +19,7 @@ logger = logging.getLogger('server')
 class Port:
     def __set__(self, instance, value):
         if not 1023 < value < 65536:
-            logger.critical(f'Port number {value} is not allower. Allowed values from 1024 to 65535.')
+            logger.critical(f'Port number {value} is not allowed. Allowed values from 1024 to 65535.')
             exit(1)
         # Если порт прошел проверку, добавляем его в список атрибутов экземпляра
         instance.__dict__[self.name] = value
@@ -40,6 +41,9 @@ class Server(metaclass=ServerVerifier):
 
         # Словарь содержащий сопоставленные имена и соответствующие им сокеты.
         self.present_users = {}
+
+        #Server database
+        self.storage = ServerStorage()
 
     def bind_socket(self):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Make TCP socket
@@ -85,12 +89,14 @@ class Server(metaclass=ServerVerifier):
                             # Prepare and send data to client
                             client = self.present_users[request['to']]                   
                             client.send(req_data)
+                            self.storage.save_message(request["from"], request["to"], request["message"])
                         except: # Client disconnected in meantime
                             logger.info('Client {} {} disconnected'.format(client.fileno(),client.getpeername()))
                             client.close()
                             all_clients.remove(client)
                 elif req_type == "presence":
                     self.present_users[request['user']['account_name']] = r_client
+                    self.storage.user_login(request['user']['account_name'])
 
 
     def make_response(self, rcv_dict):
