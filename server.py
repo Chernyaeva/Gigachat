@@ -12,6 +12,7 @@ from select import select
 from metaclasses import ServerVerifier
 from server_db import ServerStorage
 from PyQt5 import  QtWidgets, uic
+from decorators import login_required
 
 
 #initialyze logger
@@ -70,7 +71,7 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                 all_clients.remove(client)
         return requests
 
-
+    @login_required
     def write_responses(self, requests, w_clients, all_clients):
         """ Just resend received messages to all clients, except ones that are sending
         """
@@ -97,7 +98,11 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                             all_clients.remove(client)
                 elif req_type == "presence":
                     self.present_users[request['user']['account_name']] = r_client
-                    self.storage.user_login(request['user']['account_name'])
+                    auth_result = self.storage.user_login(request['user']['account_name'], request['user']['password_hash'])
+                    if auth_result == -1:
+                        client = self.present_users[request['user']['account_name']]
+                        client.close()
+                        all_clients.remove(client) 
                 elif req_type == "add_contact":
                     self.storage.add_contact(request['user_login'], request['user_id'])
                 elif req_type == "get_contacts":
