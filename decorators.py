@@ -14,3 +14,38 @@ def log(logger):
             return res
         return decorated
     return decorator
+
+def login_required(func):
+    '''
+    Декоратор, проверяющий, что клиент авторизован на сервере.
+    Проверяет, что передаваемый объект сокета находится в
+    списке авторизованных клиентов.
+    За исключением передачи словаря-запроса
+    на авторизацию. Если клиент не авторизован,
+    генерирует исключение TypeError
+    '''
+
+    def checker(*args, **kwargs):
+        # проверяем, что первый аргумент - экземпляр Server
+        # Импортить необходимо тут, иначе ошибка рекурсивного импорта.
+        from server import Server
+        if isinstance(args[0], Server):
+            found = False
+            # Проверяем, что сокет есть в списке present_users класса Server
+            for client in args[0].present_users.keys():
+                if args[0].present_users[client] in args[3]:
+                    found = True
+
+            # Теперь надо проверить, что передаваемые аргументы не presence
+            # сообщение. Если presense, то разрешаем
+            for arg in args:
+                if isinstance(arg, dict):
+                    if 'action' in arg and arg['action'] == 'presence':
+                        found = True
+            # Если не авторизован и не сообщение начала авторизации, то
+            # вызываем исключение.
+            if not found:
+                raise TypeError
+        return func(*args, **kwargs)
+
+    return checker

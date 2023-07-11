@@ -11,8 +11,10 @@ class ServerStorage:
         __tablename__ = 'users'
         id = Column(Integer, primary_key=True)
         name = Column(String, unique=True)
-        def __init__(self, name):
+        password = Column(String, unique=False)
+        def __init__(self, name, password):
             self.name = name
+            self.password = password
         def __repr__(self):
             return f'User #{self.id}: {self.name}'
     
@@ -63,23 +65,27 @@ class ServerStorage:
 
 
         # Функция выполняющяяся при входе пользователя, записывает в базу факт входа
-    def user_login(self, username):
+    def user_login(self, username, password):
         # Запрос в таблицу пользователей на наличие там пользователя с таким именем
         rez = self.session.query(self.User).filter_by(name=username)
         # Если имя пользователя уже присутствует в таблице, обновляем время последнего входа
         if not rez.count():
             # Создаем экземпляр класса self.Users, через который передаем данные в таблицу
-            user = self.User(username)
+            user = self.User(username, password)
             self.session.add(user)
             # Комит здесь нужен, чтобы присвоился ID
             self.session.commit()
             user_id = self.session.query(self.User).filter_by(name=username).first().id
         else:
-            user_id = rez.first().id    
+            user_id = rez.first().id
+            # Check user password
+            if rez.first().password != password:
+                return -1 # wrong password  
         new_user_login = self.UsersHystory(user_id, datetime.datetime.now())     
         self.session.add(new_user_login)   
         # Сохраняем изменения
         self.session.commit()
+        return 0
 
     def save_message(self, sendername, receivername, message):
         # Query users IDs from users table

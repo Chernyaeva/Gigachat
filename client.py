@@ -9,6 +9,7 @@ from decorators import log
 from threading import Thread
 from metaclasses import ClientVerifier
 from client_db import ClientStorage
+import hashlib, binascii
 
 #initialyze logger
 logger = logging.getLogger('client')
@@ -89,14 +90,14 @@ class ClientReader(Thread , metaclass=ClientVerifier):
                 logger.critical(f'Потеряно соединение с сервером.')
                 break
 
-def send_presence(mysocket, user_name):
+def send_presence(mysocket, user_name, password_hash):
     presense_message = {
     "action": "presence",
     "time": time.mktime(datetime.now().timetuple()),
     "type": "status",
     "user": {
         "account_name": user_name,
-        "status": "I'm online!"
+        "password_hash": password_hash
     }
    }
     msg = json.dumps(presense_message)
@@ -183,7 +184,10 @@ def main(argv):
       exit(1)   
    if username == '':
       username = input('Your name: ')
-   send_presence(s, username)
+   password = input('Your password: ')
+   password_hash = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), username.encode('utf-8'), 100000)
+   # print(binascii.hexlify(password_hash))
+   send_presence(s, username, binascii.hexlify(password_hash).decode('utf-8'))
    time.sleep(1)
    # Если соединение с сервером установлено корректно, запускаем клиенский процесс приёма сообщний
    module_reciver = ClientReader(username , s, storage)
