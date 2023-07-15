@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>client_db module &#8212; Gigachat  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="server_db module" href="server_db.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-client_db">
+<span id="client-db-module"></span><h1>client_db module<a class="headerlink" href="#module-client_db" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="client_db.ClientStorage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">client_db.</span></span><span class="sig-name descname"><span class="pre">ClientStorage</span></span><a class="headerlink" href="#client_db.ClientStorage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Declares clients database and methods to work with it.
+Uses SQLite and SQLAlchemy ORM.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="client_db.ClientStorage.Base">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Base</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#client_db.ClientStorage.Base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The base class of the class hierarchy.</p>
+<p>When called, it accepts no arguments and returns a new featureless
+instance that has no instance attributes and cannot be given any.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="client_db.ClientStorage.Base.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MetaData</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">MetaData()</span></em><a class="headerlink" href="#client_db.ClientStorage.Base.metadata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="client_db.ClientStorage.Base.registry">
+<span class="sig-name descname"><span class="pre">registry</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">registry</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;sqlalchemy.orm.decl_api.registry</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#client_db.ClientStorage.Base.registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="client_db.ClientStorage.Contacts">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Contacts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#client_db.ClientStorage.Contacts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="server_db.html#server_db.ServerStorage.Base" title="sqlalchemy.orm.decl_api.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></a></p>
+<p>Table to store user’s contacts.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="client_db.ClientStorage.Contacts.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#client_db.ClientStorage.Contacts.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="client_db.ClientStorage.MessageHistory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MessageHistory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sender_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receiver_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#client_db.ClientStorage.MessageHistory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="server_db.html#server_db.ServerStorage.Base" title="sqlalchemy.orm.decl_api.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></a></p>
+<p>Table to store message history.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="client_db.ClientStorage.MessageHistory.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#client_db.ClientStorage.MessageHistory.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="client_db.ClientStorage.MessageHistory.message">
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#client_db.ClientStorage.MessageHistory.message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="client_db.ClientStorage.MessageHistory.receiver_name">
+<span class="sig-name descname"><span class="pre">receiver_name</span></span><a class="headerlink" href="#client_db.ClientStorage.MessageHistory.receiver_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="client_db.ClientStorage.MessageHistory.sender_name">
+<span class="sig-name descname"><span class="pre">sender_name</span></span><a class="headerlink" href="#client_db.ClientStorage.MessageHistory.sender_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="client_db.ClientStorage.get_contacts">
+<span class="sig-name descname"><span class="pre">get_contacts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#client_db.ClientStorage.get_contacts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns list of contacts from Contacts table</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="client_db.ClientStorage.get_history">
+<span class="sig-name descname"><span class="pre">get_history</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#client_db.ClientStorage.get_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns message history as list of tuples</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="client_db.ClientStorage.save_contact">
+<span class="sig-name descname"><span class="pre">save_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#client_db.ClientStorage.save_contact" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add new contacts to Contacts table</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="client_db.ClientStorage.save_message">
+<span class="sig-name descname"><span class="pre">save_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sendername</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receivername</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#client_db.ClientStorage.save_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves message with sender and receiver names to MessageHistory table</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Gigachat</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="client.html">client module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">server module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decorators.html">decorators module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server_db.html">server_db module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">client_db module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#client_db.ClientStorage"><code class="docutils literal notranslate"><span class="pre">ClientStorage</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#client_db.ClientStorage.Base"><code class="docutils literal notranslate"><span class="pre">ClientStorage.Base</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#client_db.ClientStorage.Contacts"><code class="docutils literal notranslate"><span class="pre">ClientStorage.Contacts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#client_db.ClientStorage.MessageHistory"><code class="docutils literal notranslate"><span class="pre">ClientStorage.MessageHistory</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#client_db.ClientStorage.get_contacts"><code class="docutils literal notranslate"><span class="pre">ClientStorage.get_contacts()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#client_db.ClientStorage.get_history"><code class="docutils literal notranslate"><span class="pre">ClientStorage.get_history()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#client_db.ClientStorage.save_contact"><code class="docutils literal notranslate"><span class="pre">ClientStorage.save_contact()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#client_db.ClientStorage.save_message"><code class="docutils literal notranslate"><span class="pre">ClientStorage.save_message()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="server_db.html" title="previous chapter">server_db module</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Gigachad.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/client_db.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
