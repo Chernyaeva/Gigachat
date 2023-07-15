@@ -3,26 +3,28 @@ import logging
 import traceback
 import inspect
 
+
 def log(logger):
+    '''
+    Decorator to log function calls
+    '''
     def decorator(func):
         @wraps(func)
         def decorated(*args, **kwargs):
             res = func(*args, **kwargs)
-            logger.debug(f'Function {func.__name__} called with parameters {args}, {kwargs}. '
-                     f'from function {traceback.format_stack()[0].strip().split()[-1]} of module {func.__module__}.'
-                     f'Call from function {inspect.stack()[1][3]}')
+            logger.debug(
+                f'Function {func.__name__} called with parameters {args}, {kwargs}. '
+                f'from function {traceback.format_stack()[0].strip().split()[-1]} of module {func.__module__}.'
+                f'Call from function {inspect.stack()[1][3]}')
             return res
         return decorated
     return decorator
 
+
 def login_required(func):
     '''
-    Декоратор, проверяющий, что клиент авторизован на сервере.
-    Проверяет, что передаваемый объект сокета находится в
-    списке авторизованных клиентов.
-    За исключением передачи словаря-запроса
-    на авторизацию. Если клиент не авторизован,
-    генерирует исключение TypeError
+    Decorator to check if client is logged in.
+    If User is not logged in raises TypeError exception.
     '''
 
     def checker(*args, **kwargs):
@@ -47,5 +49,4 @@ def login_required(func):
             if not found:
                 raise TypeError
         return func(*args, **kwargs)
-
     return checker
